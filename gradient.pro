@@ -25,6 +25,7 @@ function gradient, image, vector=vector, norm=norm,  $
 ;                   10-Feb-2011, by Ding Yuan( Ding.Yuan@warwick.ac.uk)
 ;-
 ;if ~exist(image) then on_error
+tic
 sz = size( image )
 if (sz[0] ne 2) then message,"Please input an 2D image (array)"
 nx=sz[1] & ny=sz[2]
@@ -61,4 +62,5 @@ endcase
 didx = didx * xscale
 didy = didy * yscale
 if keyword_set(vector ) then  return, [ [[didx]], [[didy]] ] else return , sqrt( didx*didx + didy*didy )
+toc
 end

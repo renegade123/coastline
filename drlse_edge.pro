@@ -5,11 +5,11 @@ FUNCTION drlse_edge,phi, g, lambda,mu, alfa, epsilon, timestep, iter, potentialF
   vy=grad_g[*,*,1]
   FOR k=1,iter DO BEGIN
     phi=NeumannBoundCond(phi)
-    ;todo:ÇóÌÝ¶Èphi_x,phi_y
+    ;todo:calculate phi_x,phi_y
     grad_phi=gradient(phi,/vector)
     phi_x=grad_phi[*,*,0]
     phi_y=grad_phi[*,*,1]
-    s=SQRT(phi_x^2 + phi_y^2)
+    s=SQRT(phi_x^2 + phi_y^2,/TPOOL_MIN_ELTS)
     smallNumber=1e-10
     Nx=phi_x/(s+smallNumber)
     Ny=phi_y/(s+smallNumber)
